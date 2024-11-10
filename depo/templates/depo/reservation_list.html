@@ -1,0 +1,6 @@
+<h1>Seznam rezervací</h1>
+<ul>
+    {% for reservation in reservations %}
+        <li>{{ reservation.name }}: {{ reservation.bus.name }} ({{ reservation.start_time }} - {{ reservation.end_time }}) - Řidič: {{ reservation.driver.name }}</li>
+    {% endfor %}
+</ul>

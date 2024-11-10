@@ -1,0 +1,17 @@
+<h1>Seznam řidičů</h1>
+<ul>
+    {% for driver in drivers %}
+    <li class="
+        {% if driver.needs_weekly_rest and driver.days_since_last_rest == 6 %}
+            needs-weekly-rest-6
+        {% elif driver.needs_weekly_rest and driver.days_since_last_rest >= 7 %}
+            needs-weekly-rest-7
+        {% else %}
+            ready
+        {% endif %}
+    ">
+        {{ driver.name }} (Dny v práci: {{ driver.days_since_last_rest }})
+    </li>
+{% endfor %}
+
+</ul>

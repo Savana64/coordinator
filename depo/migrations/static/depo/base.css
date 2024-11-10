@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+li {
+    padding: 5px;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 20px;
+}

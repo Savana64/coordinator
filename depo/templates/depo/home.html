@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervační systém</title>
+</head>
+<body>
+    <h1>Rezervační systém</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'depo/base.css' %}">
+<p><a href="{% url 'bus_list' %}">Seznam autobusů</a></p>
+<p><a href="{% url 'driver_list' %}">Seznam řidičů</a></p>
+<p><a href="{% url 'reservation_list' %}">Seznam rezervací</a></p>
+<p><a href="{% url 'add_reservation' %}">Přidat rezervaci</a></p>
+    
+</body>
+</html>

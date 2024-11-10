@@ -1,0 +1,6 @@
+<h1>Seznam autobusů</h1>
+<ul>
+    {% for bus in buses %}
+        <li style="color: {% if not bus.is_ready %}red{% endif %}">{{ bus.name }} - {{ bus.seats }}</li>
+    {% endfor %}
+</ul>
