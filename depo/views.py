@@ -2,10 +2,21 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from .models import Bus, Driver, Reservation
 from .forms import ReservationForm
+from django.contrib.auth.forms import UserCreationForm
 
 # Hlavní stránka s odkazem na přihlášení a zobrazení rezervací
 def home(request):
     return render(request, 'depo/home.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('depo:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'depo/register.html', {'form': form})
 
 # Zobrazení seznamu autobusů
 def bus_list(request):

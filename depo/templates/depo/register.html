@@ -1,0 +1,14 @@
+<h2>Registrace</h2>
+<form method="post" action="{% url 'depo:register' %}">
+    {% csrf_token %}
+    <label for="username">Uživatelské jméno:</label>
+    <input type="text" id="username" name="username">
+    
+    <label for="password1">Heslo:</label>
+    <input type="password" id="password1" name="password1">
+    
+    <label for="password2">Potvrzení hesla:</label>
+    <input type="password" id="password2" name="password2">
+    
+    <button type="submit">Registrovat</button>
+</form>

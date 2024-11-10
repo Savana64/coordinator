@@ -1,0 +1,11 @@
+<h2>Přihlášení</h2>
+<form method="post" action="{% url 'depo:login' %}">
+    {% csrf_token %}
+    <label for="username">Uživatelské jméno:</label>
+    <input type="text" id="username" name="username">
+    
+    <label for="password">Heslo:</label>
+    <input type="password" id="password" name="password">
+    
+    <button type="submit">Přihlásit se</button>
+</form>
