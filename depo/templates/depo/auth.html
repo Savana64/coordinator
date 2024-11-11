@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Přihlášení nebo Registrace</title>
+</head>
+<body>
+    <h1>{% if is_registration %}Registrace{% else %}Přihlášení{% endif %}</h1>
+    
+    {% if is_registration %}
+        <!-- Formulář pro registraci -->
+        <form method="post" action="{% url 'depo:register' %}">
+            {% csrf_token %}
+            {{ registration_form.as_p }}
+            <button type="submit">Registrovat</button>
+        </form>
+    {% else %}
+        <!-- Formulář pro přihlášení -->
+        <form method="post" action="{% url 'depo:login' %}">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+            <button type="submit">Přihlásit se</button>
+        </form>
+    {% endif %}
+
+    <!-- Přepínání mezi přihlášením a registrací -->
+    <p>
+        {% if is_registration %}
+            Už máte účet? <a href="{% url 'depo:login' %}">Přihlásit se</a>
+        {% else %}
+            Nemáte účet? <a href="{% url 'depo:register' %}">Zaregistrujte se</a>
+        {% endif %}
+    </p>
+</body>
+</html>

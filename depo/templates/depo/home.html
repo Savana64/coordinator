@@ -11,12 +11,24 @@
 </head>
 <body>
     <h1>Rezervační systém</h1>
+    {% if user.is_authenticated %}
+    <p>Vítej, {{ user.username }}!</p>
+    
+{% else %}
+    <a href="{% url 'depo:login' %}"><button type="submit">Přihlásit se</button></a> |
+    <a href="{% url 'depo:register' %}"><button type="submit">Registrovat se</button></a>
+{% endif %}
 
-<p><a href="{% url 'depo:bus_list' %}">Seznam autobusů</a></p>
-<p><a href="{% url 'depo:driver_list' %}">Seznam řidičů</a></p>
-<p><a href="{% url 'depo:reservation_list' %}">Seznam rezervací</a></p>
-<p><a href="{% url 'depo:add_reservation' %}">Přidat rezervaci</a></p>
-<p><a href="{% url 'depo:login' %}">Přihlášení</a></p>
-<p><a href="{% url 'depo:logout' %}">Odhlášení</a></p>    
+
+<p><a href="{% url 'depo:bus_list' %}"><button type="submit">Seznam autobusů</button></a></p>
+<p><a href="{% url 'depo:driver_list' %}"><button type="submit">Seznam řidičů</button></a></p>
+<p><a href="{% url 'depo:reservation_list' %}"><button type="submit">Seznam rezervací</button></a></p>
+<p><a href="{% url 'depo:add_reservation' %}"><button type="submit">Přidat rezervaci</button></a></p>
+
+<p><a href="{% url 'depo:login' %}"><button type="submit">Přihlášení</button></a></p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Odhlásit se</button>
+</form>
 </body>
 </html>
