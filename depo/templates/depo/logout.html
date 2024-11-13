@@ -1,3 +1,6 @@
+{% extends "depo/home.html" %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -10,4 +13,6 @@
     <p>Děkujeme za použití naši aplikaci.</p>
     <a href="{% url 'depo:home' %}"><button type="submit">na hlavní stránku</button></a>
 </body>
+
 </html>
+{% endblock %}

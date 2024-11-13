@@ -1,10 +1,23 @@
 from django import forms
-from .models import Reservation
+from .models import Bus, Driver, Reservation
 
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['name', 'start_time', 'end_time', 'bus', 'driver']
+        fields = ['name', 'bus', 'start_time', 'end_time', 'driver']
+
+    # Definice dynamicky filtrovaných polí
+    bus = forms.ModelChoiceField(queryset=Bus.objects.none())
+    driver = forms.ModelChoiceField(queryset=Driver.objects.none())
+
+
+class RestStatusForm(forms.ModelForm):
+    class Meta:
+        model = Driver
+        fields = ['is_on_rest']
+        widgets = {
+            'is_on_rest': forms.CheckboxInput(),
+        }
 
  # Přidáme widgety s placeholdery
         #widgets = {

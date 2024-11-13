@@ -4,31 +4,42 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezervační systém</title>
-    <!-- Odkaz na CSS soubor -->
-    <link rel="stylesheet" type="text/css" href="{% static 'depo/base.css' %}">
+    <title>{% block title %}Aplikace rezervací{% endblock %}</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 </head>
 <body>
-    <h1>Rezervační systém</h1>
-    {% if user.is_authenticated %}
-    <p>Vítej, {{ user.username }}!</p>
+    <header>
+        <h2>Aplikace rezervací</h2>
+        <nav>
+            <a href="{% url 'depo:home' %}"><button type="submit">Domů</button></a>
+            <a href="{% url 'depo:bus_list' %}"><button type="submit">Seznam autobusů</button></a>
+            <a href="{% url 'depo:driver_list' %}"><button type="submit">Seznam řidičů</button></a>
+            <a href="{% url 'depo:add_reservation' %}"><button type="submit">Přidat rezervaci</button></a>
+            <a href="{% url 'depo:reservation_list' %}"><button type="submit">Rezervace</button></a>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Odhlásit se</button>
+                </form>
+            {% else %}
+                <a href="{% url 'depo:register' %}"><button type="submit">Registrovat se</button></a>
+                <a href="{% url 'depo:login' %}"><button type="submit">Přihlásit se</button></a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
     
-{% else %}
-    <a href="{% url 'depo:login' %}"><button type="submit">Přihlásit se</button></a> |
-    <a href="{% url 'depo:register' %}"><button type="submit">Registrovat se</button></a>
-{% endif %}
+    
+        <h1>kurva seru na to</h1>
+    
 
-
-<p><a href="{% url 'depo:bus_list' %}"><button type="submit">Seznam autobusů</button></a></p>
-<p><a href="{% url 'depo:driver_list' %}"><button type="submit">Seznam řidičů</button></a></p>
-<p><a href="{% url 'depo:reservation_list' %}"><button type="submit">Seznam rezervací</button></a></p>
-<p><a href="{% url 'depo:add_reservation' %}"><button type="submit">Přidat rezervaci</button></a></p>
-
-<p><a href="{% url 'depo:login' %}"><button type="submit">Přihlášení</button></a></p>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Odhlásit se</button>
-</form>
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 All good people. Všechna tráva vyhulena.</p>
+    </footer>
 </body>
 </html>

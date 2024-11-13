@@ -10,11 +10,20 @@ class Bus(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def toggle_is_ready(self):
+        """Přepne stav dostupnosti autobusu"""
+        self.is_ready = not self.is_ready
+        self.save()
 
 # Model pro řidiče
 class Driver(models.Model):
     name = models.CharField(max_length=100)
     last_rest_day = models.DateField(default=timezone.now)  # poslední den volna
+    is_on_rest = models.BooleanField(default=False)  # Indikace, zda je řidič na volnu
+
+    def days_since_last_rest(self):
+        return (timezone.now().date() - self.last_rest_day).days
 
     def days_since_last_rest(self):
         # Spočítá, kolik dní uplynulo od posledního volna

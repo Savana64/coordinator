@@ -1,8 +1,47 @@
-{% load static %}
-
-<h1>Seznam autobusů</h1>
-<ul>
-    {% for bus in buses %}
-        <li style="color: {% if not bus.is_ready %}red{% endif %}">{{ bus.name }} - {{ bus.seats }}</li>
-    {% endfor %}
-</ul>
+{% extends "depo/home.html" %}
+{% block content %}
+<section>
+    <h2 style="text-align: center;">Seznam autobusů</h2>
+    <table>
+        <thead>
+            <tr>
+                <h4><th>Název autobusu</th></h4>
+                <th>Počet místk sezení</th>
+                <th>Dostupnost</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bus in buses %}
+            <tr>
+                <td>
+                    <a href="{% url 'depo:bus_list' %}">{{ bus.name }}</a>
+                </td>
+                <td>{{ bus.seats }}</td>
+                <td>
+                    {% if bus.is_ready %}
+                        <span style="color: green;">Dostupný</span>  <!-- Zelený text pro dostupný autobus -->
+                    {% else %}
+                        <span style="color: red;">Nedostupný</span>  <!-- Červený text pro nedostupný autobus -->
+                    {% endif %}
+                </td>
+                <td>
+                    <!-- Formulář pro přepnutí stavu dostupnosti -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="bus_id" value="{{ bus.id }}">
+                        <button type="submit" class="btn btn-toggle">
+                            {% if bus.is_ready %}
+                                Nastavit nedostupný
+                            {% else %}
+                                Nastavit dostupný
+                            {% endif %}
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</section>
+{% endblock %}

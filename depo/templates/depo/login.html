@@ -1,3 +1,6 @@
+{% extends "depo/home.html" %}
+{% block content %}
+
 <h2>Přihlášení</h2>
 <form method="post" action="{% url 'depo:login' %}">
     {% csrf_token %}
@@ -9,3 +12,4 @@
     
     <button type="submit">Přihlásit se</button>
 </form>
+{% endblock %}
