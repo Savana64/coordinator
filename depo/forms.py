@@ -4,11 +4,18 @@ from .models import Bus, Driver, Reservation
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['name', 'bus', 'start_time', 'end_time', 'driver']
+        fields = ['name', 'start_time', 'end_time', 'bus', 'driver' ]
+        labels = {
+            'name': 'Název rezervace',
+            'bus': 'Autobus',
+            'start_time': 'Čas začátku',
+            'end_time': 'Čas konce',
+            'driver': 'Řidič',
+        }
 
     # Definice dynamicky filtrovaných polí
-    bus = forms.ModelChoiceField(queryset=Bus.objects.none())
-    driver = forms.ModelChoiceField(queryset=Driver.objects.none())
+    bus = forms.ModelChoiceField(queryset=Bus.objects.none(), label="Autobus")
+    driver = forms.ModelChoiceField(queryset=Driver.objects.none(), label="Řidič")
 
 
 class RestStatusForm(forms.ModelForm):
