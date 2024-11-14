@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 </head>
 <body>
+ 
     <header>
         <h2>Aplikace rezervací</h2>
         <nav>
@@ -32,14 +33,71 @@
     <main>
         {% block content %}
     
+        <h2 style="text-align: center;">Rezervační systém autobusů s řízením řidičů</h2>
+        <br>
+        <br>
+        <h3 style="margin-left: 60px;">Cíl projektu</h3><br>
+           <h4 style="margin-left: 20px;"> </h4>
+            <p>Projekt je zaměřen na vytvoření jednoduchého rezervačního systému pro autobusovou dopravu, 
+                který umožňuje přehlednou správu autobusů, řidičů a rezervací. Systém zároveň zohledňuje
+                 omezení pracovní doby řidičů a umožňuje snadné plánování a údržbu vozového parku.</p><br>
+            
+            <h3 style="margin-left: 60px; margin-top: 5px;">Klíčové funkce</h3><br>
+
+            <h4 style="margin-left: 20px; margin-top: 5px;">Správa autobusů:</h4>
+            
+            <p style="margin-top: 5px;">Evidence autobusů s informacemi o kapacitě a dostupnosti.
+            Možnost změnit stav autobusu (dostupný/nedostupný) prostřednictvím jednoduchého formuláře.
+            Přehledný výpis všech autobusů s barevnými indikátory pro zobrazení dostupnosti.</p><br>
+
+            <h4 style="margin-left: 20px; margin-top: 5px;">Správa řidičů:</h4>
+            
+            <p style="margin-top: 5px;">Evidence řidičů s možností sledovat, jak dlouho jsou v práci od posledního volna.
+            Systém upozorňuje na potřebu týdenního odpočinku pomocí barevného zvýraznění: 6. den v práci je označen oranžově a 7. den červeně.
+            Možnost manuálního nastavení volna pro řidiče přímo z administrativního rozhraní.</p><br>
+            
+            <h4 style="margin-left: 20px; margin-top: 5px;">Rezervační systém:</h4>
+            
+            <p style="margin-top: 5px;">Uživatel může vytvořit novou rezervaci a přiřadit k ní dostupný autobus a vhodného řidiče.
+            Ve formuláři se zobrazují pouze dostupné autobusy a řidiči, kteří odpovídají 
+            nastaveným podmínkám.
+            Přehled všech rezervací s informacemi o trase, přiřazeném autobusu a řidiči.</p>
+
+            <h4 style="margin-left: 20px; margin-top: 5px;">Hlavní přínosy projektu</h4>
     
-        <h1>kurva seru na to</h1>
-    
+            <p style="margin-top: 5px;">Projekt poskytuje základ pro efektivní správu autobusové dopravy s možností
+            dodržení pracovních předpisů řidičů. Jednoduchý a přehledný systém umožňuje
+            snadno plánovat rezervace, řídit kapacitu autobusů a pracovní dobu řidičů.</p>
 
         {% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 All good people. Všechna tráva vyhulena.</p>
+        <p style="text-align: center;">&copy; 2024 All good people. Všechna práva vyhrazena.
+            <a href="{% static 'depo/privacy_policy.txt' %}" target="_blank" style="color: white; margin-left: 60px;">Zásady ochrany osobních údajů</a>
+        </p>
+        
     </footer>
+    <!-- JavaScript pro cookies banner -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var cookieBanner = document.getElementById("cookie-banner");
+            var acceptButton = document.getElementById("accept-cookies");
+            var declineButton = document.getElementById("decline-cookies");
+
+            if (!localStorage.getItem("cookiesAccepted")) {
+                cookieBanner.style.display = "block";
+            }
+
+            acceptButton.onclick = function () {
+                localStorage.setItem("cookiesAccepted", "true");
+                cookieBanner.style.display = "none";
+            };
+
+            declineButton.onclick = function () {
+                localStorage.setItem("cookiesAccepted", "false");
+                cookieBanner.style.display = "none";
+            };
+        });
+    </script>
 </body>
 </html>

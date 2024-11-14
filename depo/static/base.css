@@ -4,10 +4,11 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    opacity: 0.8;
     flex-direction: column;
-    line-height: 0;
+    line-height: 1.2;
     min-height: 100vh;
-    background-image: url('/static/depo/images/pferd.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('/static/depo/images/pferd.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -58,7 +59,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px;
-    position:absolute;
+    position:static;
     bottom: 0;
     width: 100%;
 }
@@ -68,6 +69,31 @@ table {
     font-family: Arial, sans-serif;
     margin-left: auto;
     margin-right: auto;
+}
+
+#cookie-banner {
+    font-size: 14px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#cookie-banner button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#cookie-banner button#decline-cookies {
+    background-color: #f44336;
 }
 
 
@@ -104,3 +130,4 @@ button {
 button:hover {
     background-color: #333;
 }
+
