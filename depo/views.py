@@ -16,8 +16,10 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('depo/login')
+            user=form.save()
+            login(request, user)
+            next_url = request.GET.get('next', 'depo:home') # Získej původní URL nebo přesměruj na domovskou stránku
+            return redirect(next_url)
     else:
         form = UserCreationForm()
     return render(request, 'depo/register.html', {'form': form})
@@ -98,5 +100,6 @@ def delete_reservation(request, reservation_id):
     reservation.delete()
     return redirect('depo:reservation_list')
 
-
+def about(request):
+    return render(request, 'depo/about.html')
 # Create your views here.

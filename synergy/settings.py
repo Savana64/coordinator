@@ -137,4 +137,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'depo:login'  # pojmenuj URL přihlašovací stránky podle tvého app_name a názvu URL patternu
-LOGIN_REDIRECT_URL = 'depo:home'  # kam přesměrovat po úspěšném přihlášení
+LOGIN_REDIRECT_URL = '/depo/'  # kam přesměrovat po úspěšném přihlášení
+PROJECT_VERSION = "1.0.0"

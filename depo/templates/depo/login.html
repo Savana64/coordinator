@@ -9,6 +9,9 @@
     
     <label for="password">Heslo:</label>
     <input type="password" id="password" name="password">
+
+     <!-- Skrytý vstup pro parametr `next` -->
+     <input type="hidden" name="next" value="{{ request.GET.next }}">
     
     <button type="submit">Přihlásit se</button>
 </form>

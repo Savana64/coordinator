@@ -6,6 +6,7 @@ app_name = 'depo'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
     path('buses/', views.bus_list, name='bus_list'),
     path('drivers/', views.driver_list, name='driver_list'),
     path('reservations/', views.reservation_list, name='reservation_list'),

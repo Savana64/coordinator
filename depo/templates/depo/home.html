@@ -15,6 +15,7 @@
         <h2>Aplikace rezervací</h2>
         <nav>
             <a href="{% url 'depo:home' %}"><button type="submit">Domů</button></a>
+            <a href="{% url 'depo:about' %}"><button type="submit">O projektu</button></a>
             <a href="{% url 'depo:bus_list' %}"><button type="submit">Seznam autobusů</button></a>
             <a href="{% url 'depo:driver_list' %}"><button type="submit">Seznam řidičů</button></a>
             <a href="{% url 'depo:add_reservation' %}"><button type="submit">Přidat rezervaci</button></a>
@@ -25,54 +26,38 @@
                     <button type="submit">Odhlásit se</button>
                 </form>
             {% else %}
-                <a href="{% url 'depo:register' %}"><button type="submit">Registrovat se</button></a>
-                <a href="{% url 'depo:login' %}"><button type="submit">Přihlásit se</button></a>
+                <a href="{% url 'depo:register' %}?next={{request.path}}"><button type="submit">Registrovat se</button></a>
+                <a href="{% url 'depo:login' %}?next={{request.path}}"><button type="submit">Přihlásit se</button></a>
             {% endif %}
         </nav>
     </header>
     <main>
         {% block content %}
     
-        <h2 style="text-align: center;">Rezervační systém autobusů s řízením řidičů</h2>
-        <br>
-        <br>
-        <h3 style="margin-left: 60px;">Cíl projektu</h3><br>
-           <h4 style="margin-left: 20px;"> </h4>
-            <p>Projekt je zaměřen na vytvoření jednoduchého rezervačního systému pro autobusovou dopravu, 
-                který umožňuje přehlednou správu autobusů, řidičů a rezervací. Systém zároveň zohledňuje
-                 omezení pracovní doby řidičů a umožňuje snadné plánování a údržbu vozového parku.</p><br>
-            
-            <h3 style="margin-left: 60px; margin-top: 5px;">Klíčové funkce</h3><br>
-
-            <h4 style="margin-left: 20px; margin-top: 5px;">Správa autobusů:</h4>
-            
-            <p style="margin-top: 5px;">Evidence autobusů s informacemi o kapacitě a dostupnosti.
-            Možnost změnit stav autobusu (dostupný/nedostupný) prostřednictvím jednoduchého formuláře.
-            Přehledný výpis všech autobusů s barevnými indikátory pro zobrazení dostupnosti.</p><br>
-
-            <h4 style="margin-left: 20px; margin-top: 5px;">Správa řidičů:</h4>
-            
-            <p style="margin-top: 5px;">Evidence řidičů s možností sledovat, jak dlouho jsou v práci od posledního volna.
-            Systém upozorňuje na potřebu týdenního odpočinku pomocí barevného zvýraznění: 6. den v práci je označen oranžově a 7. den červeně.
-            Možnost manuálního nastavení volna pro řidiče přímo z administrativního rozhraní.</p><br>
-            
-            <h4 style="margin-left: 20px; margin-top: 5px;">Rezervační systém:</h4>
-            
-            <p style="margin-top: 5px;">Uživatel může vytvořit novou rezervaci a přiřadit k ní dostupný autobus a vhodného řidiče.
-            Ve formuláři se zobrazují pouze dostupné autobusy a řidiči, kteří odpovídají 
-            nastaveným podmínkám.
-            Přehled všech rezervací s informacemi o trase, přiřazeném autobusu a řidiči.</p>
-
-            <h4 style="margin-left: 20px; margin-top: 5px;">Hlavní přínosy projektu</h4>
-    
-            <p style="margin-top: 5px;">Projekt poskytuje základ pro efektivní správu autobusové dopravy s možností
-            dodržení pracovních předpisů řidičů. Jednoduchý a přehledný systém umožňuje
-            snadno plánovat rezervace, řídit kapacitu autobusů a pracovní dobu řidičů.</p>
+        <section>
+            <h2 style="text-align: center;">Rezervační systém autobusů s řízením řidičů</h2>
+            <p style="margin: 20px; text-align: justify;">
+                Tento rezervační systém slouží k efektivní správě autobusů, řidičů a rezervací pro autobusovou dopravu. 
+                Cílem je zjednodušit administrativní procesy a zajistit dodržování pravidel pro pracovní dobu řidičů. 
+                Projekt také zohledňuje plánování vozového parku a nabízí jednoduché uživatelské rozhraní.
+            </p>
+            <h3 style="margin-left: 20px;">Hlavní vlastnosti</h3>
+            <ul style="margin-left: 40px;">
+                <li>Správa autobusů a jejich dostupnosti</li>
+                <li>Plánování pracovního režimu řidičů</li>
+                <li>Vytváření a správa rezervací</li>
+                <li>Automatické upozornění na pracovní limity</li>
+            </ul>
+            <p style="margin: 20px;">
+                Tento systém je navržen s ohledem na jednoduchost použití a maximální přehlednost pro správce. 
+                Pokud máte dotazy nebo potřebujete pomoc, kód je ke stažení na github.com/savana64/coordinator
+            </p>
+        </section>
 
         {% endblock %}
     </main>
     <footer>
-        <p style="text-align: center;">&copy; 2024 All good people. Všechna práva vyhrazena.
+        <p style="text-align: center;">&copy; 2024 All good people. Verze: {{ project_version }} Všechna práva vyhrazena.
             <a href="{% static 'depo/privacy_policy.txt' %}" target="_blank" style="color: white; margin-left: 60px;">Zásady ochrany osobních údajů</a>
         </p>
         
