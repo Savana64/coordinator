@@ -67,8 +67,10 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'depo.context_processors.project_version',  # Přidání vlastního processoru
             ],
         },
     },
@@ -138,4 +140,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'depo:login'  # pojmenuj URL přihlašovací stránky podle tvého app_name a názvu URL patternu
 LOGIN_REDIRECT_URL = '/depo/'  # kam přesměrovat po úspěšném přihlášení
-PROJECT_VERSION = "1.0.0"
+PROJECT_VERSION = "3.0.2"

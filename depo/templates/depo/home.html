@@ -24,6 +24,7 @@
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">Odhlásit se</button>
+                    
                 </form>
             {% else %}
                 <a href="{% url 'depo:register' %}?next={{request.path}}"><button type="submit">Registrovat se</button></a>
@@ -50,14 +51,14 @@
             </ul>
             <p style="margin: 20px;">
                 Tento systém je navržen s ohledem na jednoduchost použití a maximální přehlednost pro správce. 
-                Pokud máte dotazy nebo potřebujete pomoc, kód je ke stažení na github.com/savana64/coordinator
+                Pokud máte dotazy nebo potřebujete pomoc, zkuste chatGPT nebo strejdu gugla.
             </p>
         </section>
 
         {% endblock %}
     </main>
     <footer>
-        <p style="text-align: center;">&copy; 2024 All good people. Verze: {{ project_version }} Všechna práva vyhrazena.
+        <p style="text-align: center;">&copy; 2024 All good people. Verze: {{ project_version }} Všechna práva vymrazena.
             <a href="{% static 'depo/privacy_policy.txt' %}" target="_blank" style="color: white; margin-left: 60px;">Zásady ochrany osobních údajů</a>
         </p>
         

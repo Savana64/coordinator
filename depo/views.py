@@ -68,10 +68,18 @@ def reservation_list(request):
 
 @login_required
 def add_reservation(request):
+    # Filtr dostupných autobusů a řidičů
+    available_buses = Bus.objects.filter(is_ready=True)
+    available_drivers = Driver.objects.filter(
+        is_on_rest=False,
+        last_rest_day__gte=timezone.now().date() - timedelta(days=6)
+    )
+
     if request.method == 'POST':
-        form = ReservationForm(request.POST)
+        form = ReservationForm(request.POST, available_buses=available_buses, available_drivers=available_drivers)
         if form.is_valid():
             reservation = form.save(commit=False)
+            # Aktualizace stavu řidiče
             if reservation.driver.days_since_last_rest() >= 6:
                 reservation.driver.last_rest_day = timezone.now()
                 reservation.driver.is_on_rest = True
@@ -79,19 +87,10 @@ def add_reservation(request):
             reservation.save()
             return redirect('depo:reservation_list')
     else:
-        # Filtrování dostupných autobusů a řidičů
-        available_buses = Bus.objects.filter(is_ready=True)
-        # Filtrování řidičů, kteří jsou "v práci" (1 až 6 dní od posledního volna)
-        available_drivers = Driver.objects.filter(
-            is_on_rest=False,
-            last_rest_day__gte=timezone.now().date() - timedelta(days=6)
-        )
-
-        form = ReservationForm()
-        form.fields['bus'].queryset = available_buses
-        form.fields['driver'].queryset = available_drivers
+        form = ReservationForm(available_buses=available_buses, available_drivers=available_drivers)
 
     return render(request, 'depo/reservation_form.html', {'form': form})
+
 
 
 

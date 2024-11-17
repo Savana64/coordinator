@@ -18,7 +18,7 @@
             <tr>
                 <td>{{  reservation.name }}..</td>
                 <td>{{  reservation.bus.name }}..</td>
-                <td>{{  reservation.start_time }} - {{  reservation.end_time }}..</td>
+                <td>{{  reservation.start_time|date:"d.m.Y H:i"  }} - {{  reservation.end_time|date:"d.m.Y H:i"  }}..</td>
                 <td>{{  reservation.driver.name }}.. </td>
                 <td>
                     <a href="{% url 'depo:delete_reservation' reservation.id %}" onclick="return confirm('Opravdu chcete tuto rezervaci smazat?');">
