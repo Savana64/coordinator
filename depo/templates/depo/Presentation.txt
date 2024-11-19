@@ -1,0 +1,51 @@
+Co dát na jednotlivé slajdy?
+1. Titulní slajd:
+
+Název projektu: "Rezervační systém autobusů"
+Tvoje jméno: "Vytvořila: [Tvé jméno]"
+Datum: "Datum: [např. 15. listopadu 2024]"
+2. O autorovi:
+
+Stručně:
+Jsem studentka programování.
+Učím se Python a Django.
+Tento projekt jsem vytvořila v rámci školní práce, abych se naučila, jak funguje webová aplikace.
+Obrázek: Klidně přidej jednoduchý obrázek Pythonu nebo knihy (stačí najít na Googlu).
+3. Použité technologie:
+
+Nadpis: "Technologie v projektu"
+Body:
+Python – backendový jazyk
+Django – framework pro webové aplikace
+SQLite – databáze pro ukládání dat
+HTML, CSS – uživatelské rozhraní
+Obrázek: Logo Pythonu nebo Django.
+4. Popis projektu:
+
+Nadpis: "Co projekt dělá?"
+Body:
+Umožňuje spravovat autobusy, řidiče a rezervace.
+Automaticky kontroluje pracovní dobu řidičů.
+Uživatelé mohou přidávat rezervace.
+Obrázek: Screenshot z projektu (např. stránka s autobusy nebo řidiči).
+5. Cíle projektu a jeho využití:
+
+Nadpis: "Cíle a budoucnost projektu"
+Body:
+Naučit se Django a práci s databázemi.
+Projekt může sloužit malým dopravním firmám.
+Plán: Rozšířit funkce, třeba o platební bránu nebo mobilní aplikaci.
+6. Pro koho projekt je:
+
+Nadpis: "Pro koho je určen?"
+Body:
+Dopravní firmy.
+Školy a studenti pro vzdělávací účely.
+Obrázek: Ikonka autobusu nebo práce s počítačem.
+7. Možnost komerčního využití:
+
+Nadpis: "Komerční potenciál"
+Body:
+Může být rozšířen o placené funkce (rezervace, platby).
+Lze nabídnout malým firmám jako SaaS.
+Obrázek: Ikonka peněz nebo růstu.

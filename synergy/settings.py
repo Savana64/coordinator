@@ -29,14 +29,14 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'depo'
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
-   
+    
     "depo.apps.DepoConfig",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,7 +124,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' # URL pro statické soubory
+
+# Složky, kde hledat další statické soubory
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'coordinator/static')]
+
+# Kde shromáždit všechny statické soubory při collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
@@ -139,5 +145,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'depo:login'  # pojmenuj URL přihlašovací stránky podle tvého app_name a názvu URL patternu
-LOGIN_REDIRECT_URL = '/depo/'  # kam přesměrovat po úspěšném přihlášení
+LOGIN_REDIRECT_URL = '/'  # kam přesměrovat po úspěšném přihlášení
 PROJECT_VERSION = "3.0.2"

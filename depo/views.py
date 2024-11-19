@@ -1,10 +1,11 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import timedelta
 from .models import Bus, Driver, Reservation
-from .forms import ReservationForm, RestStatusForm
+from .forms import ReservationForm
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -23,6 +24,11 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'depo/register.html', {'form': form})
+
+def set_cookie_view(request):
+    response = HttpResponse("Cookies byly nastaveny.")
+    response.set_cookie('moje_cookie', 'hodnota_cookie', max_age=3600)  # Platnost 1 hodina
+    return response
 
 # Zobrazení seznamu autobusů
 

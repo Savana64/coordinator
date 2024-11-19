@@ -1,0 +1,14 @@
+"Optional Features
+Better UI: Use Bootstrap or other HTML/CSS framework with professionally looking templates.
+Deployment: Deploy the project to a hosting platform and use a free SSL certificate from Let’s Encrypt to secure your site. Suggested free hosting solutions: PythonAnywhere (free tier), Fly.io (free trial).
+Interactive JavaScript Components: Use interactive JavaScript components, e.g., DataTables.
+Students should list all the optional features on a separate slide of their presentation.
+Project Evaluation
+Basic Requirements: The project works, has the required features, the presentation also follows the requirements. 5 points. Points are deducted for bugs, poor implementation or lack of the required features.
+Deployment: The project is deployed to a hosting platform and has a valid SSL certificate. 2 points.
+Professional Templates: The project is using professionally looking and responsive HTML/CSS templates (e.g., Bootstrap). 2 points.
+JavaScript Components: The project is using interactive JavaScript components (e.g., DataTables). 1 point.
+Thus, a student can get up to 10 points. 5 points is a pass. The teacher has a spreadsheet with the appropriate columns and notes points for the implemented features there.
+Project Presentation Scenario
+The student shows an up to 5-minute presentation. The students should be able to voice the technology stack they used and name the features. Then the student presents the project itself. They quickly show the user registration and login feature and the working project functionality. The teacher may ask the student to show specific pages mentioned in the menu, show how the site looks on mobile devices using the Chrome web tools feature.
+Note: These requirements are subject to change based on the needs of the project and the course instructor’s guidance. It is important to maintain regular communication with the course instructor and peers to ensure the project is on track and meets the course objectives."

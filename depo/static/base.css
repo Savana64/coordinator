@@ -4,11 +4,11 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    opacity: 0.6;
+    opacity: 0.8;
     flex-direction: column;
     line-height: 1.2;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('/static/depo/images/pferd.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/static/depo/images/pferd.jpg');
     background-size: cover;
     background-position: center;
 }
