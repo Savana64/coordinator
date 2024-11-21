@@ -51,7 +51,7 @@
             </ul>
             <p style="margin: 20px;">
                 Tento systém je navržen s ohledem na jednoduchost použití a maximální přehlednost pro správce. 
-                Pokud máte dotazy nebo potřebujete pomoc, zkuste chatGPT nebo strejdu gugla.
+                Pokud máte dotazy nebo potřebujete pomoc, zkuste jako já chatGPT nebo strejdu gugla.
             </p>
         </section>
 
@@ -59,7 +59,7 @@
     </main>
     <footer>
         <p style="text-align: center;">&copy; 2024 All good people. Verze: {{ project_version }} Všechna práva vymrazena.
-            <a href="{% static 'depo/privacy_policy.txt' %}" target="_blank" style="color: white; margin-left: 60px;">Zásady ochrany osobních údajů</a>
+            <a href="{% url 'depo:privacy_policy' %}" target="_blank" style="color: white; margin-left: 60px;">Zásady ochrany osobních údajů</a>
         </p>
         
     </footer>
