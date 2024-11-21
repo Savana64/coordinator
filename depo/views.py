@@ -105,6 +105,21 @@ def delete_reservation(request, reservation_id):
     reservation.delete()
     return redirect('depo:reservation_list')
 
+@login_required
+def update_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('depo:reservation_list')
+    else:
+        form = ReservationForm(instance=reservation)
+
+    return render(request, 'depo/reservation_form.html', {'form': form})
+
+
 def about(request):
     return render(request, 'depo/about.html')
 # Create your views here.

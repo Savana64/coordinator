@@ -24,6 +24,9 @@
                     <a href="{% url 'depo:delete_reservation' reservation.id %}" onclick="return confirm('Opravdu chcete tuto rezervaci smazat?');">
                         <button type="button">Smazat</button>
                     </a>
+                    <a href="{% url 'depo:update_reservation' reservation.id %}">
+                        <button type="button">Upravit</button>
+                    </a>
                 </td>
             </tr>
         
