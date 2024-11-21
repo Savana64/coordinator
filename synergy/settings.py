@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6tk!=!exgbmu!b7^^k-ff=nupc=fq*+k6a&redpq#7&0=5z+0e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pinkrider64.eu.pythonanywhere_com']
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -127,10 +127,13 @@ USE_TZ = True
 STATIC_URL = 'static/' # URL pro statické soubory
 
 # Složky, kde hledat další statické soubory
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'coordinator/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'depo/static')]
 
 # Kde shromáždit všechny statické soubory při collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
@@ -146,4 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'depo:login'  # pojmenuj URL přihlašovací stránky podle tvého app_name a názvu URL patternu
 LOGIN_REDIRECT_URL = '/'  # kam přesměrovat po úspěšném přihlášení
-PROJECT_VERSION = "3.0.2"
+PROJECT_VERSION = "3.1.2"

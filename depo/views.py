@@ -66,7 +66,7 @@ def driver_list(request):
 # Zobrazení seznamu rezervací
 @login_required
 def reservation_list(request):
-    reservations = Reservation.objects.all()
+    reservations = Reservation.objects.all().order_by('-start_time')
     return render(request, 'depo/reservation_list.html', {'reservations': reservations})
 
 # Přidání nové rezervace

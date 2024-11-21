@@ -21,6 +21,7 @@ class Driver(models.Model):
     name = models.CharField(max_length=100)
     last_rest_day = models.DateField(default=timezone.now)  # poslední den volna
     is_on_rest = models.BooleanField(default=False)  # Indikace, zda je řidič na volnu
+    phone = models.CharField(max_length=15, blank=True, null=True)
 
     def days_since_last_rest(self):
         return (timezone.now().date() - self.last_rest_day).days
