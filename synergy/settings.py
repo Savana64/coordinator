@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6tk!=!exgbmu!b7^^k-ff=nupc=fq*+k6a&redpq#7&0=5z+0e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -131,6 +131,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'depo/static')]
 
 # Kde shromáždit všechny statické soubory při collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
