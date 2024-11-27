@@ -22,8 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-6tk!=!exgbmu!b7^^k-ff=nupc=fq*+k6a&redpq#7&0=5z+0e'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-89d4.up.railway.app'
+]
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Přidat sem!
     'django.contrib.sessions.middleware.SessionMiddleware',
