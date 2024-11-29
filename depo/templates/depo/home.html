@@ -64,30 +64,35 @@
         
     </footer>
     <!-- HTML pro cookies banner -->
-    <div id="cookie-banner" style="display:none; position: fixed; bottom: 0; width: 100%; background-color: #f4f4f4; border-top: 1px solid #ccc; padding: 10px; text-align: center;">
-        <p>Souhlasíte s používáním cookies? <button id="accept-cookies">Ano</button> <button id="decline-cookies">Ne</button></p>
+    <div id="cookie-banner" style="display:none; position: fixed; bottom: 0; width: 100%; background-color: #0d0e3b; border-top: 1px solid #f8f7fa; padding: 10px; text-align: center;">
+        <p>
+            Tento web používá cookies, aby vám poskytl co nejlepší zážitek.
+            Souhlasíte s používáním cookies? 
+            <button id="accept-cookies">Ano</button> 
+            <button id="decline-cookies">Ne</button></p>
     </div>
     <!-- JavaScript pro cookies banner -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Najdeme prvky na stránce
             var cookieBanner = document.getElementById("cookie-banner");
             var acceptButton = document.getElementById("accept-cookies");
             var declineButton = document.getElementById("decline-cookies");
-
+            // Zkontrolujeme, zda už bylo rozhodnutí o cookies uloženo
             if (!localStorage.getItem("cookiesAccepted")) {
-                cookieBanner.style.display = "block";
+                cookieBanner.style.display = "block"; // Zobrazíme banner
             }
-
+            // Zpracování akceptace cookies
             acceptButton.onclick = function () {
-                localStorage.setItem("cookiesAccepted", "true");
-                cookieBanner.style.display = "none";
+                localStorage.setItem("cookiesAccepted", "true"); // Uložíme souhlas
+                cookieBanner.style.display = "none"; // Skryjeme banner
             };
-
+            // Zpracování odmítnutí cookies
             declineButton.onclick = function () {
-                localStorage.setItem("cookiesAccepted", "false");
-                cookieBanner.style.display = "none";
-            };
-        });
+                localStorage.setItem("cookiesAccepted", "false"); // Uložíme nesouhlas
+                cookieBanner.style.display = "none"; // Skryjeme banner            
+                };
+            });
     </script>
 </body>
 </html>
