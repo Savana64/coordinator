@@ -2,6 +2,7 @@
 {% block content %}
 
 <h2>Přihlášení</h2>
+
 <form method="post" action="{% url 'depo:login' %}">
     {% csrf_token %}
     <label for="username">Uživatelské jméno:</label>
@@ -10,9 +11,10 @@
     <label for="password">Heslo:</label>
     <input type="password" id="password" name="password">
 
-     <!-- Skrytý vstup pro parametr `next` -->
-     <input type="hidden" name="next" value="{{ request.GET.next }}">
+    <!-- Skrytý vstup pro `next` -->
+    <input type="hidden" name="next" value="{{ request.GET.next|default:next }}">
     
     <button type="submit">Přihlásit se</button>
 </form>
+
 {% endblock %}

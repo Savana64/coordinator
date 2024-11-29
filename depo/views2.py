@@ -34,26 +34,17 @@ def login_view(request):
         "next": request.GET.get("next", "/depo/home/"),  # Výchozí stránka při načtení formuláře
     })
 
-def register_view(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password1 = request.POST.get("password1")
-        password2 = request.POST.get("password2")
-        next_url = request.POST.get("next", "/depo/home/")  # Výchozí stránka
-
-        if password1 == password2:
-            user = User.objects.create_user(username=username, password=password1)
-            login(request, user)  # Automatické přihlášení po registraci
-            return HttpResponseRedirect(next_url)
-        else:
-            return render(request, "depo/register.html", {
-                "error": "Hesla se neshodují",
-                "next": next_url,  # Vrátí zpět `next` pro opětovné zobrazení ve formuláři
-            })
-    
-    return render(request, "depo/register.html", {
-        "next": request.GET.get("next", "/depo/home/"),  # Výchozí stránka při načtení formuláře
-    })
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user=form.save()
+            login(request, user)
+            next_url = request.GET.get('next', 'depo:home') # Získej původní URL nebo přesměruj na domovskou stránku
+            return redirect(next_url)
+    else:
+        form = UserCreationForm()
+    return render(request, 'depo/register.html', {'form': form})
 
 def set_cookie_view(request):
     response = HttpResponse("Cookies byly nastaveny.")
