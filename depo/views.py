@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
+from django.utils.timezone import now
 from datetime import timedelta
 from .models import Bus, Driver, Reservation
 from .forms import ReservationForm
@@ -88,22 +89,27 @@ def bus_list(request):
 @login_required
 def driver_list(request):
     drivers = Driver.objects.all()
-    
+    today = now().date()
+
+    # Přidání počtu dnů od posledního volna
+    for driver in drivers:
+        delta = today - driver.last_rest_day
+        driver.days_since_rest = delta.days
     # Nastavení volna řidiče přes formulář
     if request.method == 'POST':
         driver_id = request.POST.get('driver_id')
         driver = get_object_or_404(Driver, id=driver_id)
-        #form = RestStatusForm(request.POST, instance=driver)
         # Přepnutí stavu volna
         driver.is_on_rest = not driver.is_on_rest
         if driver.is_on_rest:
-            driver.last_rest_day = timezone.now().date()  # Nastavení dne volna, pokud řidič jde na volno
+            driver.last_rest_day = timezone.now().date()  # Nastavení dne volna
         driver.save()
-        #if form.is_valid():
-            #form.save()
         return redirect('depo:driver_list')  # Přesměrování zpět na seznam řidičů
     
-    return render(request, 'depo/driver_list.html', {'drivers': drivers})
+    return render(request, 'depo/driver_list.html', {
+        'drivers': drivers,
+        'now': now(),  # Přidání aktuálního času pro výpočet v šabloně
+    })
 
 # Zobrazení seznamu rezervací
 @login_required
