@@ -34,6 +34,18 @@ def login_view(request):
         "next": request.GET.get("next", "/depo/home/"),  # Výchozí stránka při načtení formuláře
     })
 
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user=form.save()
+            login(request, user)
+            next_url = request.GET.get('next', 'depo:home') # Získej původní URL nebo přesměruj na domovskou stránku
+            return redirect(next_url)
+    else:
+        form = UserCreationForm()
+    return render(request, 'depo/register.html', {'form': form})
+
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
