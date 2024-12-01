@@ -4,68 +4,72 @@
     <h2 style="text-align: center;">Seznam řidičů</h2>
     <table>
         <thead>
-            <tr>
-                <th>Jméno řidiče</th>
-                <th>tel</th>
-                <th>Dny v práci</th>
-                <th>Status</th>
-                <th>Akce</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for driver in drivers %}
-            <tr>
-                <td>{{ driver.name }}</td>
-                <td>
-                    {% if driver.phone %}
-                        {{ driver.phone }}
+    <tr>
+        <th>Jméno řidiče</th>
+        <th>Telefon</th>
+        <th>Dny v práci/volna</th>
+        <th>Stav</th>
+        <th>Akce</th>
+    </tr>
+</thead>
+<tbody>
+    {% for driver in drivers %}
+    <tr>
+        <td>{{ driver.name }}</td>
+        <td>
+            {% if driver.phone %}
+                {{ driver.phone }}
+            {% else %}
+                Nenastaveno
+            {% endif %}
+        </td>
+        <td>
+            {% if driver.is_on_rest %}
+                {{ driver.days_since_rest }} dnů na volnu
+            {% else %}
+                {{ driver.days_since_rest }} dnů v práci
+            {% endif %}
+        </td>
+        <td>
+            <span class="
+                {% if driver.is_on_rest %}
+                    Na volnu
+                {% elif driver.days_since_rest == 6 %}
+                    needs-weekly-rest-6
+                {% elif driver.days_since_rest >= 7 %}
+                    needs-weekly-rest-7
+                {% else %}
+                    ready
+                {% endif %}
+                ">
+                {% if driver.is_on_rest %}
+                    Na volnu
+                {% elif driver.days_since_rest == 6 %}
+                    6. den
+                {% elif driver.days_since_rest >= 7 %}
+                    Nedostupný
+                {% else %}
+                    Dostupný
+                {% endif %}
+            </span>
+        </td>
+        <td>
+            <form method="post" action="{% url 'depo:driver_list' %}">
+                {% csrf_token %}
+                <input type="hidden" name="driver_id" value="{{ driver.id }}">
+                <button type="submit">
+                    {% if driver.is_on_rest %}
+                        Nastavit do práce
                     {% else %}
-                        Nenastaveno
+                        Nastavit volno
                     {% endif %}
-                </td>
-                
-                <td>{{ driver.days_since_rest }}</td>
-                <td>
-                    <span class="
-                        {% if driver.is_on_rest %}
-                        Na volnu
-                        {% elif driver.days_since_last_rest == 6 %}
-                                needs-weekly-rest-6
-                            {% elif driver.days_since_last_rest >= 7 %}
-                                needs-weekly-rest-7
-                            {% else %}
-                                ready
-                            {% endif %}
-                        ">
-                        {% if driver.is_on_rest %}
-                            Na volnu
-                        {% elif driver.days_since_last_rest == 6 %}
-                            6. den
-                        {% elif driver.days_since_last_rest >= 7 %}
-                            Nedostupný
-                        {% else %}
-                            Dostupný
-                        {% endif %}
-                    </span>
-                </td>
-                <!-- Formulář pro změnu stavu volna -->
-                <td>
-                    <form method="post" action="{% url 'depo:driver_list' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="driver_id" value="{{ driver.id }}">
-                        <button type="submit">
-                            {% if driver.is_on_rest %}
-                                Nastavit do práce
-                            {% else %}
-                                Nastavit volno
-                            {% endif %}
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
 </section>
 
 {% endblock %}
